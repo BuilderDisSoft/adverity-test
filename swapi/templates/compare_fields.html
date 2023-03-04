@@ -1,3 +1,10 @@
+<!-- Include css styles -->
+{% load static %}
+<link rel="stylesheet" href="{% static 'swapi/css/table_styles.css' %}">
+<!-- Include js code -->
+{% load static %}
+<script src="{% static 'swapi/js/jquery-3.6.3.min.js' %}"></script>
+
 {% block content %}
 <form id="column-form">
     <div id="column-options"></div>
@@ -9,7 +16,6 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function () {
         // Retrieve options from server using AJAX
