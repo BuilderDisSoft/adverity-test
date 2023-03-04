@@ -1,3 +1,7 @@
+<!-- Include css styles -->
+{% load static %}
+<link rel="stylesheet" href="{% static 'swapi/css/table_styles.css' %}">
+
 {% block content %}
 <h1>Star Wars Characters</h1>
 <table class="table table-striped">
@@ -12,7 +16,7 @@
         <form action="{% url 'download_data' %}" method="post">
           {% csrf_token %}
           <div class="form-group">
-            <input type="submit" value="Download Data" class="btn btn-primary">
+            <input type="submit" value="Download Data" class="btn btn-primary" id="download-btn">
           </div>
         </form>
       </td>
@@ -35,3 +39,35 @@
 </div>
 {% endif %}
 {% endblock %}
+
+{% block scripts %}
+
+<script>
+  // get the button element by its ID
+  var downloadBtn = document.getElementById("download-btn");
+
+  // add an event listener to the form submission event
+  downloadBtn.closest("form").addEventListener("submit", function () {
+    // add the "loading" class to the button
+    downloadBtn.classList.add("loading");
+    // add the "disabled" attribute to the button
+    downloadBtn.setAttribute("disabled", "disabled");
+  });
+
+  // add an event listener to the page load event
+  window.addEventListener("load", function () {
+    // remove the "loading" class from the button
+    downloadBtn.classList.remove("loading");
+    // remove the "disabled" attribute from the button
+    downloadBtn.removeAttribute("disabled");
+  });
+</script>
+{% endblock %}
+
+<style>
+  #download-btn.loading {
+    background-color: gray;
+    color: white;
+    cursor: progress;
+  }
+</style>
