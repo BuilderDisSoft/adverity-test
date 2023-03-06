@@ -1,4 +1,3 @@
-# swapi.util.compare_field.py
 class CompareField:
     def __init__(self, data, selected_columns):
         self.data = data
@@ -8,8 +7,6 @@ class CompareField:
         return self.selected_columns.split(",") if self.selected_columns else []
 
     def filter_data(self):
-        if len(self.process_selected_columns()) == 0:
-            return []
         # Filter data to selected columns
         filtered_data = []
         for row in self.data:
@@ -23,7 +20,7 @@ class CompareField:
         # Count occurrences of values for selected columns
         value_counts = {}
         for row in filtered_data:
-            key = tuple(row[column] for column in self.process_selected_columns())
+            key = tuple(row.values())
             value_counts[key] = value_counts.get(key, 0) + 1
         return value_counts
 
