@@ -8,3 +8,6 @@
 ## URLs
 To find the solution, you can access the route:
 `http://localhost:8000/swapi/download_data/`
+
+## Tests
+- To run all tests: `make test-local`
